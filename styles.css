@@ -157,7 +157,7 @@ body {
 .card-body { padding: 9.6px 16px 0; }
 
 .student-name {
-  font-size: 24.9px;             /* SF Pro: referans genisligi 169.02 css */
+  font-size: 25.35px;             /* SF Pro: referans genisligi 169.02 css */
   font-weight: 700;
   letter-spacing: -0.3px;
   color: #1d1d1f;
@@ -165,7 +165,7 @@ body {
 }
 
 .student-birth {
-  font-size: 24.9px;             /* SF Pro: referans genisligi 95.93 css */
+  font-size: 16.81px;             /* SF Pro: referans genisligi 95.93 css */
   font-weight: 340;
   color: var(--ink);
   margin-top: 14.5px;
@@ -184,7 +184,7 @@ body {
   padding: 13.85px 17px 0 0;
 }
 .school-info {
-  font-size: 24.9px;
+  font-size: 17px;
   font-weight: 340;
   line-height: 20.5px;
   color: var(--ink);
@@ -210,7 +210,7 @@ body {
 .status-text { font-size: 15.27px; font-weight: 370; color: var(--ink); }
 
 .valid-date {
-  font-size: 24.9px;             /* SF Pro: referans genisligi 223.27 css */
+  font-size: 30.56px;             /* SF Pro: referans genisligi 223.27 css */
   font-weight: 700;
   letter-spacing: -1.1px;
   color: #1d1d1f;
