@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, maximum-scale=1">
+<meta name="theme-color" content="#f9f7fa">
+<link rel="icon" href="data:,">
+
+<!-- iOS: ana ekrana eklenince tam ekran uygulama gibi -->
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Opiskelijakortti">
+<link rel="apple-touch-icon" href="icons/icon-192.png">
+<link rel="apple-touch-startup-image" href="icons/icon-512.png">
+
+<title>Opiskelijakortti</title>
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="app">
+    <main class="page">
+
+      <!-- ===== OPISKELIJAKORTTI ===== -->
+      <section class="screen active" id="screen-card">
+        <div class="card-head">
+          <span class="card-head-pill">Opiskelijakortti</span>
+        </div>
+
+        <div class="avatar-zone">
+          <button class="avatar" id="avatar" type="button" aria-label="Vaihda profiilikuva">
+            <img class="avatar-img" id="avatarImg" alt="" hidden>
+            <span class="avatar-ph" id="avatarPh">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="8.6" r="3.7"/><path d="M4.6 20.2c1.5-4.1 4.3-6.1 7.4-6.1s5.9 2 7.4 6.1"/>
+              </svg>
+              <b>Lisää kuva</b>
+            </span>
+            <!-- pembe pulse (Profile Pulse) + uzerinde "frank" -->
+            <span class="pulse-button" aria-hidden="true">
+              <span class="pulse-text">frank</span>
+            </span>
+          </button>
+        </div>
+
+        <div class="card-body">
+          <h1 class="student-name" id="studentName">Eyüp Eskikurt</h1>
+          <div class="student-birth" id="studentBirth">25-07-2006</div>
+
+          <div class="divider div-1"></div>
+
+          <div class="school-row">
+            <div class="school-info">
+              <div id="schoolName">Aalto-yliopisto</div>
+              <div id="schoolUnit">AALTO CHEM</div>
+              <div id="schoolRole">Korkeakouluopiskelija</div>
+              <div id="studentId">104607118</div>
+            </div>
+            <img class="syl-logo" src="syl-logo.svg" alt="SYL" width="85" height="141">
+          </div>
+
+          <div class="divider div-2"></div>
+
+          <div class="status">
+            <span class="status-dot">
+              <svg viewBox="0 0 24 24" fill="none" stroke="#0a7a45" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="5 13 10 18 20 7"/></svg>
+            </span>
+            <span class="status-text">Voimassa</span>
+          </div>
+
+          <h1 class="valid-date"><span id="validDate">30.09.2027</span> asti</h1>
+          <button class="verify-btn" id="openQr">Opiskelijakortin tarkastus</button>
+        </div>
+      </section>
+
+      <!-- ===== EDUT ===== -->
+      <section class="screen" id="screen-edut">
+        <div class="placeholder">Edut — tulossa pian</div>
+      </section>
+
+      <!-- ===== VIESTIT ===== -->
+      <section class="screen" id="screen-viestit">
+        <div class="placeholder">Viestit — tulossa pian</div>
+      </section>
+
+      <!-- ===== MENU (demo-asetukset) ===== -->
+      <section class="screen" id="screen-menu">
+        <h2 class="menu-title">Menu</h2>
+
+        <div class="menu-block">
+          <div class="menu-block-label">Profiilikuva</div>
+
+          <div class="photo-row">
+            <span class="photo-preview" id="photoPreview">
+              <svg id="photoPreviewIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="8.6" r="3.7"/><path d="M4.6 20.2c1.5-4.1 4.3-6.1 7.4-6.1s5.9 2 7.4 6.1"/>
+              </svg>
+              <img id="photoPreviewImg" alt="" hidden>
+            </span>
+            <div class="photo-actions">
+              <button class="photo-btn" id="pickPhoto" type="button">Vaihda kuva…</button>
+              <button class="photo-btn ghost" id="clearPhoto" type="button">Poista kuva</button>
+            </div>
+          </div>
+
+          <input type="file" id="photoInput" accept="image/*" hidden>
+          <div class="menu-hint" id="photoStatus"></div>
+          <div class="menu-hint">Valitse kuva laitteestasi. Kuva skaalataan ja tallennetaan vain tähän selaimeen.</div>
+        </div>
+
+        <div class="menu-block">
+          <div class="menu-block-label">Demo — opiskelijatiedot</div>
+
+          <div class="set-row">
+            <label class="set-label">Nimi</label>
+            <input type="text" id="setName" class="set-input" value="Eyüp Eskikurt">
+          </div>
+          <div class="set-row">
+            <label class="set-label">Syntymäaika</label>
+            <input type="date" id="setBirth" class="set-input" value="2006-07-25">
+          </div>
+          <div class="set-row">
+            <label class="set-label">Oppilaitos</label>
+            <input type="text" id="setSchool" class="set-input" value="Aalto-yliopisto">
+          </div>
+          <div class="set-row">
+            <label class="set-label">Koulutusohjelma</label>
+            <input type="text" id="setUnit" class="set-input" value="AALTO CHEM">
+          </div>
+          <div class="set-row">
+            <label class="set-label">Opiskelijatyyppi</label>
+            <input type="text" id="setRole" class="set-input" value="Korkeakouluopiskelija">
+          </div>
+          <div class="set-row">
+            <label class="set-label">Opiskelijanumero</label>
+            <input type="text" id="setStudentId" class="set-input" value="104607118">
+          </div>
+        </div>
+
+        <div class="menu-block">
+          <div class="menu-block-label">Demo-asetukset</div>
+
+          <div class="set-row">
+            <label class="set-label">Voimassaolo</label>
+            <select id="setPreset" class="set-input">
+              <option value="valid" selected>Voimassa — 30.09.2027 asti</option>
+              <option value="soon">Päättyy pian — 30.09.2026 asti</option>
+              <option value="expired">Ei voimassa — 30.09.2025 päättynyt</option>
+              <option value="custom">Mukautettu päivämäärä…</option>
+            </select>
+          </div>
+
+          <div class="set-row" id="customRow" hidden>
+            <label class="set-label">Mukautettu päivämäärä</label>
+            <input type="date" id="setDate" class="set-input" value="2027-09-30">
+          </div>
+
+          <div class="set-row">
+            <label class="set-label">Lukemattomat viestit</label>
+            <select id="setBadge" class="set-input">
+              <option value="0">0</option>
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3" selected>3</option>
+              <option value="9">9</option>
+            </select>
+          </div>
+
+          <button class="reset-btn" id="resetDemo">Palauta oletukset</button>
+        </div>
+      </section>
+    </main>
+
+    <!-- ===== QR OVERLAY ===== -->
+    <div class="qr-overlay" id="qrOverlay" hidden>
+      <div class="qr-top">
+        <button class="qr-back" id="closeQr">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+        </button>
+        <div class="qr-head">
+          <div class="qr-title">Opiskelijakortin tarkastus</div>
+          <div class="qr-sub">Näytä koodi tarkastajalle</div>
+        </div>
+      </div>
+
+      <div class="qr-mid">
+        <div class="qr-box"><div id="qrCode"></div></div>
+        <div class="qr-status" id="qrStatus">
+          <span class="status-dot sm">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#0a7a45" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="5 13 10 18 20 7"/></svg>
+          </span>
+          <span class="qr-status-text" id="qrStatusText">Voimassa <b>30.09.2027</b> asti</span>
+        </div>
+      </div>
+
+      <div class="qr-foot">
+        <div class="qr-meta">
+          <span class="qr-meta-label">Korttinumero</span>
+          <span class="qr-meta-value">0420 1234</span>
+        </div>
+        <div class="qr-meta">
+          <span class="qr-meta-label">Päivitetty</span>
+          <span class="qr-meta-value" id="qrClock">—</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="footer">
+      <button class="tab" data-tab="edut">
+        <svg class="tab-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.5" y2="16.5"/>
+        </svg>
+        <span class="tab-label">Edut</span>
+      </button>
+
+      <button class="tab active" data-tab="card">
+        <svg class="tab-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="2.5" y="4" width="19" height="16" rx="2.5"/>
+          <circle cx="8.5" cy="10" r="2.2"/>
+          <path d="M5.5 15.5c.6-1.9 1.7-2.8 3-2.8s2.4.9 3 2.8"/>
+          <line x1="14.5" y1="9.5" x2="18.5" y2="9.5"/>
+          <line x1="14.5" y1="13" x2="18.5" y2="13"/>
+        </svg>
+        <span class="tab-label">Opiskelijakortti</span>
+      </button>
+
+      <button class="tab" data-tab="viestit">
+        <span class="ic-wrap">
+          <svg class="tab-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M18 8a6 6 0 0 0-12 0c0 7-3 8-3 8h18s-3-1-3-8"/>
+            <path d="M13.7 20a2 2 0 0 1-3.4 0"/>
+          </svg>
+          <span class="badge" id="viestitBadge">3</span>
+        </span>
+        <span class="tab-label">Viestit</span>
+      </button>
+
+      <button class="tab" data-tab="menu">
+        <svg class="tab-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="4" y1="7" x2="20" y2="7"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="17" x2="20" y2="17"/>
+        </svg>
+        <span class="tab-label">Menu</span>
+      </button>
+    </footer>
+
+    <div class="home-indicator"></div>
+  </div>
+<script src="qrcode-gen.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

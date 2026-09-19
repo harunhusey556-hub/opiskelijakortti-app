@@ -1,0 +1,14 @@
+{
+  "name": "Opiskelijakortti",
+  "short_name": "Opiskelu",
+  "description": "Digitaalinen opiskelijakortti",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#f5f6fa",
+  "theme_color": "#ffffff",
+  "lang": "fi",
+  "icons": [
+    { "src": "icons/icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "icons/icon-512.png", "sizes": "512x512", "type": "image/png" }
+  ]
+}

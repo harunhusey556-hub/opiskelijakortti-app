@@ -1,0 +1,355 @@
+
+/* ===== GERCEK SF Pro (referans iPhone'un fontu) ===== */
+@font-face {
+  font-family: "SFProText";
+  src: url("fonts/SF-Pro-Text-Regular.otf") format("opentype");
+  font-weight: 400; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: "SFProText";
+  src: url("fonts/SF-Pro-Text-Semibold.otf") format("opentype");
+  font-weight: 600; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: "SFProText";
+  src: url("fonts/SF-Pro-Text-Bold.otf") format("opentype");
+  font-weight: 700; font-style: normal; font-display: swap;
+}
+
+:root {
+  --pink: #e0007a;
+  --ink: #1d1d1f;
+  --active-label: #000000;
+  --muted-label: #6e6e73;
+  --page-bg: #f8f8f8;
+  --green: #98faba;         /* voimassa rozeti (referans ölçümü) */
+  --blue: #6986ca;          /* başlık + tarkastus butonu (kart referansından) */
+  --danger: #e04848;
+  --text-gray: #6e6c6f;
+  --divider: #cfcfcf;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+html, body { height: 100%; }
+body {
+  /* SF Pro gomulu: her platformda referansla AYNI font */
+  font-family: "SFProText", -apple-system, BlinkMacSystemFont, "SF Pro Text", "Inter", "Segoe UI", Roboto, sans-serif;
+  background: #e9e9ec;
+}
+
+.app {
+  display: flex; flex-direction: column;
+  height: 100dvh;
+  max-width: 402px; margin: 0 auto;
+  background: var(--page-bg);
+  position: relative; overflow: hidden;
+}
+
+.page { flex: 1; overflow-y: auto; }
+
+/* ===== SCREENS ===== */
+.screen { display: none; }
+.screen.active { display: block; }
+.placeholder { color: #9a9aa0; text-align: center; padding-top: 80px; font-size: 16px; }
+
+/* ===== OPISKELIJAKORTTI (referans konumlandırma) ===== */
+#screen-card { padding: 0 0 20px; }
+
+/* --- header --- */
+.card-head {
+  height: 88.5px;
+  background: var(--blue);
+  display: flex; align-items: flex-end; justify-content: center;
+  padding-bottom: 3.5px;
+}
+.card-head-pill {
+  height: 30px; display: inline-flex; align-items: center;
+  padding: 0 18px; border-radius: 999px;
+  background: rgba(0,0,0,.07);
+  color: #fff; font-size: 16px; font-weight: 700; letter-spacing: .1px;
+}
+
+/* --- profile photo + Profile Pulse --- */
+.avatar-zone { height: 239.5px; position: relative; }
+.avatar {
+  position: absolute; left: 50%; top: 26.2px; transform: translateX(-50%);
+  width: 199px; height: 199px; border-radius: 50%;
+  padding: 0; border: 0; cursor: pointer;
+  background: transparent; color: #a3aec4;
+  display: grid; place-items: center;
+  overflow: visible;
+  z-index: 0;               /* kendi stacking context'i → ::before z-index:-1 sayfa zeminini örtmez */
+}
+/* MAVİ GLOW — fotoğrafın arkasındaki mavilik (referans ölçümünden) */
+.avatar::before {
+  content: ""; position: absolute; inset: -10px; border-radius: 50%;
+  background: rgba(82, 109, 198, 0.5);
+  filter: blur(8px);
+  z-index: -1;
+}
+.avatar-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; border-radius: 50%; display: block; }
+.avatar-img[hidden] { display: none; }
+.avatar-ph {
+  position: absolute; inset: 0;
+  border-radius: 50%;
+  background: #eef1f8;
+  display: grid; place-items: center; gap: 7px;
+}
+.avatar-ph[hidden] { display: none; }
+.avatar-ph svg { width: 44px; height: 44px; }
+.avatar-ph b { font-size: 13px; font-weight: 600; color: #8b96ab; }
+
+/* PEMBE YUVARLAK + PULSE */
+.pulse-button {
+  position: absolute;
+  width: 68.2px; height: 68.2px;
+  right: -12.4px; bottom: -11.4px;
+  border-radius: 50%;
+  background: #fd1b64;
+  z-index: 5;
+  isolation: isolate;
+  pointer-events: none;
+  opacity: 0; transition: opacity .18s ease;
+  display: grid; place-items: center;   /* "frank" yazisini ortala */
+}
+.pulse-text {
+  position: relative; z-index: 1;
+  color: #fff;
+  font-size: 26.7px;             /* referans: yazi genisligi disk capinin %90.9'u */
+  font-weight: 700;
+  letter-spacing: -0.6px;
+  line-height: 1;
+  transform: translateY(0.4px); /* referans: merkezden %4.2 asagida */
+  pointer-events: none; user-select: none;
+}
+.avatar.has-photo .pulse-button { opacity: 1; }
+.pulse-button::before {
+  content: ""; position: absolute; inset: 0; border-radius: 50%;
+  background: #fd1b64; z-index: -1;
+  animation: pulseEffect .95s linear infinite;
+}
+@keyframes pulseEffect {
+  0%    { transform: scale(1.22); opacity: .383; }
+  10.5% { transform: scale(1.28); opacity: .325; }
+  21%   { transform: scale(1.34); opacity: .260; }
+  31.5% { transform: scale(1.38); opacity: .190; }
+  42%   { transform: scale(1.44); opacity: .140; }
+  52.5% { transform: scale(1.47); opacity: .087; }
+  63%   { transform: scale(1.49); opacity: .057; }
+  73.5% { transform: scale(1.52); opacity: .028; }
+  84%   { transform: scale(1.53); opacity: .014; }
+  94.5% { transform: scale(1.54); opacity: .004; }
+  100%  { transform: scale(1.55); opacity: 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .pulse-button::before { animation: none; }
+}
+
+/* --- body --- */
+.card-body { padding: 9.6px 16px 0; }
+
+.student-name {
+  font-size: 25.35px;             /* SF Pro: referans genisligi 169.02 css */
+  font-weight: 700;
+  letter-spacing: -0.3px;
+  color: #1d1d1f;
+  line-height: 32.2px;
+}
+
+.student-birth {
+  font-size: 16.81px;             /* SF Pro: referans genisligi 95.93 css */
+  font-weight: 340;
+  color: var(--ink);
+  margin-top: 14.5px;
+  line-height: 21.6px;
+  position: relative; top: 1.1px;   /* blok kaymadan sadece metni hizala */
+}
+
+.divider { height: 1px; background: var(--divider); }
+.div-1 { margin-top: 15.15px; }
+
+.school-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 13.85px 17px 0 0;
+}
+.school-info {
+  font-size: 17px;
+  font-weight: 340;
+  line-height: 20.5px;
+  color: var(--ink);
+  position: relative; top: 2.5px;
+}
+.syl-logo { width: 40px; height: 66.2px; flex-shrink: 0; display: block; position: relative; top: 1.62px; }
+
+.div-2 { margin-top: 18.45px; }
+
+.status {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  margin-top: 14.95px;
+}
+.status-dot {
+  width: 22px; height: 22px; border-radius: 50%;
+  background: var(--green);
+  display: grid; place-items: center; flex-shrink: 0;
+}
+.status-dot.sm { width: 34px; height: 34px; }
+.status-dot svg { width: 62%; height: 62%; }
+.status-text { font-size: 15.27px; font-weight: 370; color: var(--ink); }
+
+.valid-date {
+  font-size: 29.43px;             /* SF Pro: referans genisligi 223.27 css */
+  font-weight: 700;
+  letter-spacing: -0.5px;
+  color: #1d1d1f;
+  line-height: 35.2px;              /* satir kutusu sabit → buton kaymaz */
+  position: relative; top: 1.1px;   /* tarama: bu en iyi */
+  margin-top: 6.3px;
+}
+
+.verify-btn {
+  width: 100%;
+  height: 51.4px;
+  background: var(--blue);
+  color: #fff;
+  border: 0;
+  border-radius: 26px;
+  font-size: 17px; font-weight: 600; font-family: inherit;
+  cursor: pointer;
+  margin-top: 24.9px;
+  box-shadow: 0 6px 18px rgba(105,134,202,.26);
+  transition: transform .12s;
+}
+.verify-btn:active { transform: scale(.98); }
+.verify-btn:focus { outline: none; }
+.verify-btn:focus-visible { outline: 2px solid rgba(105,134,202,.5); outline-offset: 2px; }
+
+/* ===== MENU / DEMO SETTINGS ===== */
+#screen-menu { padding: 16px 16px 24px; }
+.menu-title { font-size: 28px; font-weight: 700; margin-bottom: 18px; color: #16151a; }
+.menu-block { background: #fff; border-radius: 16px; padding: 16px; margin-bottom: 14px; }
+.menu-block-label {
+  font-size: 12px; font-weight: 700; letter-spacing: 1.2px;
+  text-transform: uppercase; color: #9a9aa0; margin-bottom: 12px;
+}
+.set-row { margin-bottom: 14px; }
+.set-label { display: block; font-size: 13px; font-weight: 600; color: #333338; margin-bottom: 6px; }
+.set-input {
+  width: 100%; padding: 11px 13px;
+  border: 1px solid #e2e2e8; border-radius: 12px;
+  font-size: 15px; font-family: inherit; color: #16151a;
+  background: #fafafc;
+}
+.reset-btn {
+  width: 100%; padding: 13px;
+  background: #f0f0f4; color: #333338;
+  border: 0; border-radius: 12px;
+  font-size: 15px; font-weight: 600; font-family: inherit;
+  cursor: pointer; margin-top: 2px;
+}
+
+/* --- profile photo picker --- */
+.photo-row { display: flex; align-items: center; gap: 14px; }
+.photo-preview {
+  width: 64px; height: 64px; border-radius: 50%; flex-shrink: 0;
+  background: #eef1f8; color: #a3aec4;
+  display: grid; place-items: center; overflow: hidden;
+}
+.photo-preview svg { width: 32px; height: 32px; }
+.photo-preview img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.photo-actions { display: flex; flex-direction: column; gap: 8px; flex: 1; min-width: 0; }
+.photo-btn {
+  width: 100%; padding: 11px 14px;
+  border: 0; border-radius: 12px;
+  background: #eef1f8; color: #2c3550;
+  font-size: 15px; font-weight: 600; font-family: inherit; cursor: pointer;
+}
+.photo-btn.ghost { background: #f6f6f9; color: #8a8a95; }
+.photo-btn:active { transform: scale(.985); }
+.photo-btn:disabled { opacity: .45; cursor: default; }
+.menu-hint { font-size: 12px; color: #9a9aa0; line-height: 1.45; margin-top: 12px; }
+
+/* ===== QR OVERLAY ===== */
+.qr-overlay {
+  position: absolute; inset: 0; z-index: 20;
+  background: var(--page-bg);
+  display: flex; flex-direction: column;
+  animation: qrIn .22s ease;
+}
+.qr-overlay[hidden] { display: none; }
+@keyframes qrIn { from { transform: translateY(18px); opacity: 0; } to { transform: none; opacity: 1; } }
+
+.qr-top { display: flex; align-items: center; gap: 14px; padding: 20px 16px 10px; }
+.qr-back {
+  width: 42px; height: 42px; border-radius: 50%;
+  background: #fff; border: 0; cursor: pointer;
+  display: grid; place-items: center; color: #16151a;
+  box-shadow: 0 1px 4px rgba(0,0,0,.08); flex-shrink: 0;
+}
+.qr-back svg { width: 22px; height: 22px; }
+.qr-title { font-size: 19px; font-weight: 700; color: #16151a; }
+.qr-sub { font-size: 13px; color: #9a9aa0; margin-top: 1px; }
+
+.qr-mid { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 24px; }
+.qr-box {
+  background: #fff; border-radius: 24px; padding: 26px;
+  box-shadow: 0 10px 34px rgba(0,0,0,.08);
+}
+#qrCode img, #qrCode canvas, #qrCode svg { display: block; border-radius: 6px; }
+
+.qr-status { display: flex; align-items: center; gap: 10px; }
+.qr-status.expired .status-dot { background: #ffd7d7; }
+.qr-status.expired .status-dot svg { stroke: var(--danger); }
+.qr-status-text { font-size: 17px; color: #333338; }
+.qr-status-text b { font-weight: 700; }
+
+.qr-foot {
+  display: flex; justify-content: space-between;
+  padding: 18px 22px calc(env(safe-area-inset-bottom, 0px) + 26px);
+}
+.qr-meta { display: flex; flex-direction: column; gap: 2px; }
+.qr-meta-label { font-size: 12px; color: #9a9aa0; }
+.qr-meta-value { font-size: 15px; font-weight: 600; color: #16151a; font-variant-numeric: tabular-nums; }
+
+/* ===== FOOTER ===== */
+.footer {
+  display: flex; align-items: flex-start;
+  background: #ffffff;
+  padding: 12px 0 10px;
+  flex-shrink: 0;
+  border: 0;              /* yan "side bar" cizgisi kaldirildi */
+  box-shadow: none;
+}
+.tab {
+  flex: 1; display: flex; flex-direction: column; align-items: center;
+  gap: 7px; background: none; border: 0; cursor: pointer;
+  font-family: inherit; color: var(--ink);
+}
+.ic-wrap { position: relative; }
+.tab-ic { width: 29px; height: 29px; color: var(--ink); }
+.tab-label { font-size: 14px; font-weight: 400; color: var(--muted-label); position: relative; }
+.tab.active .tab-label { color: var(--active-label); font-weight: 600; }
+.tab.active .tab-label::after {
+  content: ""; position: absolute; left: 0; right: 0; bottom: -5px;
+  height: 3px; border-radius: 2px; background: var(--pink);
+}
+.badge {
+  position: absolute; top: -7px; right: -11px;
+  width: 21px; height: 21px; border-radius: 50%;
+  background: var(--pink); color: #fff;
+  font-size: 12px; font-weight: 600;
+  display: grid; place-items: center; border: 2px solid #fff;
+}
+.badge[hidden] { display: none; }
+
+.home-indicator {
+  height: env(safe-area-inset-bottom, 0px);
+  background: #ffffff; flex-shrink: 0;
+}
+/* NOT: eskiden burada siyah bir "swipe bar" (home indicator) ciziliyordu.
+   Gercek iOS'ta o cubugu SISTEM cizer; uygulamanin cizmesi screenshot
+   artigi gibi duruyordu. Kaldirildi. */
