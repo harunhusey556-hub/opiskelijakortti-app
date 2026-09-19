@@ -11,13 +11,16 @@ const PRECACHE = [
   './syl-logo.svg',
   './icons/icon-192.png',
   './icons/icon-512.png',
-  './font-sesi-placeholder.txt'
+  './frank-text.png',
+  './fonts/SF-Pro-Text-Regular.woff2',
+  './fonts/SF-Pro-Text-Semibold.woff2',
+  './fonts/SF-Pro-Text-Bold.woff2'
 ];
 
 self.addEventListener('install', e => {
   e.waitUntil(
     caches.open(CACHE)
-      .then(c => c.addAll(PRECACHE.filter(u => !u.includes('placeholder'))))
+      .then(c => c.addAll(PRECACHE))
       .then(() => self.skipWaiting())
       .catch(err => console.warn('precache kismi basarisiz:', err))
   );

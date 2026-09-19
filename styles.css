@@ -2,17 +2,17 @@
 /* ===== GERCEK SF Pro (referans iPhone'un fontu) ===== */
 @font-face {
   font-family: "SFProText";
-  src: url("fonts/SF-Pro-Text-Regular.otf") format("opentype");
+  src: url("fonts/SF-Pro-Text-Regular.woff2") format("woff2");
   font-weight: 400; font-style: normal; font-display: swap;
 }
 @font-face {
   font-family: "SFProText";
-  src: url("fonts/SF-Pro-Text-Semibold.otf") format("opentype");
+  src: url("fonts/SF-Pro-Text-Semibold.woff2") format("woff2");
   font-weight: 600; font-style: normal; font-display: swap;
 }
 @font-face {
   font-family: "SFProText";
-  src: url("fonts/SF-Pro-Text-Bold.otf") format("opentype");
+  src: url("fonts/SF-Pro-Text-Bold.woff2") format("woff2");
   font-weight: 700; font-style: normal; font-display: swap;
 }
 
@@ -166,7 +166,7 @@ body {
 
 .student-birth {
   font-size: 16.81px;             /* SF Pro: referans genisligi 95.93 css */
-  font-weight: 340;
+  font-weight: 400;
   color: var(--ink);
   margin-top: 14.5px;
   line-height: 21.6px;
@@ -185,7 +185,7 @@ body {
 }
 .school-info {
   font-size: 17px;
-  font-weight: 340;
+  font-weight: 400;
   line-height: 20.5px;
   color: var(--ink);
   position: relative; top: 2.5px;
@@ -207,7 +207,7 @@ body {
 }
 .status-dot.sm { width: 34px; height: 34px; }
 .status-dot svg { width: 62%; height: 62%; }
-.status-text { font-size: 15.27px; font-weight: 370; color: var(--ink); }
+.status-text { font-size: 15.27px; font-weight: 400; color: var(--ink); }
 
 .valid-date {
   font-size: 30.56px;             /* SF Pro: referans genisligi 223.27 css */
@@ -220,7 +220,8 @@ body {
 }
 
 .verify-btn {
-  width: 100%;
+  width: 370.3px;          /* referans: 368.31 css (100% = 365.67 cok dar) */
+  margin-left: -1.4px;     /* referans sol kenar 16.56 */
   height: 51.4px;
   background: var(--blue);
   color: #fff;
@@ -229,7 +230,7 @@ body {
   font-size: 24.9px; font-weight: 600; font-family: inherit;
   cursor: pointer;
   margin-top: 24.9px;
-  box-shadow: 0 6px 18px rgba(105,134,202,.26);
+  box-shadow: 0 3px 9px rgba(105,134,202,.14);   /* referans golgesi cok hafif */
   transition: transform .12s;
 }
 .verify-btn:active { transform: scale(.98); }
