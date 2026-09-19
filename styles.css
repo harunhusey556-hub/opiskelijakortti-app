@@ -125,8 +125,8 @@ body {
   position: absolute; inset: 0; z-index: 1;
   background: url("frank-text.png") no-repeat;
   /* referans kesitinden piksel piksel cikarilan "frank" yazisi (birebir sekil) */
-  background-size: 65.6px auto;   /* PNG 200px = 62css yazi + 6px kenarlik */
-  background-position: calc(50% - 0.5px) calc(50% + 0.2px);  /* dx -1.4% dy +0.5% (referans) */
+  background-size: 66.6px auto;   /* PNG 204px = 61.7css yazi + 8px kenarlik */
+  background-position: calc(50% - 0.64px) calc(50% + 0.17px);  /* dx -1.9% dy +0.5% (referans) */
   pointer-events: none; user-select: none;
 }
 .avatar.has-photo .pulse-button { opacity: 1; }
