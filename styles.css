@@ -16,6 +16,15 @@
   font-weight: 700; font-style: normal; font-display: swap;
 }
 
+/* ===== "frank" pulse yazisi: Raleway Black (Google Fonts) =====
+   Referans kesitindeki yazinin sekline en yakin font bu oldu
+   (IoU 0.6147 — sistemdeki 1753 font + indirilen 12 black font tarandi) */
+@font-face {
+  font-family: "FrankPulse";
+  src: url("fonts/Raleway-Black.woff2") format("woff2");
+  font-weight: 900; font-style: normal; font-display: swap;
+}
+
 :root {
   --pink: #e0007a;
   --ink: #1d1d1f;
@@ -105,7 +114,7 @@ body {
   width: 68.2px; height: 68.2px;
   right: -12.4px; bottom: -11.4px;
   border-radius: 50%;
-  background: #fd1b64;
+  background: #E73C70;
   z-index: 5;
   isolation: isolate;
   pointer-events: none;
@@ -113,19 +122,17 @@ body {
   display: grid; place-items: center;   /* "frank" yazisini ortala */
 }
 .pulse-text {
-  position: relative; z-index: 1;
-  color: #fff;
-  font-size: 26.7px;             /* referans: yazi genisligi disk capinin %90.9'u */
-  font-weight: 700;
-  letter-spacing: -0.6px;
-  line-height: 1;
-  transform: translateY(0.4px); /* referans: merkezden %4.2 asagida */
+  position: absolute; inset: 0; z-index: 1;
+  background: url("frank-text.png") no-repeat;
+  /* referans kesitinden piksel piksel cikarilan "frank" yazisi (birebir sekil) */
+  background-size: 65.6px auto;   /* PNG 200px = 62css yazi + 6px kenarlik */
+  background-position: calc(50% - 0.5px) calc(50% + 0.2px);  /* dx -1.4% dy +0.5% (referans) */
   pointer-events: none; user-select: none;
 }
 .avatar.has-photo .pulse-button { opacity: 1; }
 .pulse-button::before {
   content: ""; position: absolute; inset: 0; border-radius: 50%;
-  background: #fd1b64; z-index: -1;
+  background: #E73C70; z-index: -1;
   animation: pulseEffect .95s linear infinite;
 }
 @keyframes pulseEffect {
@@ -149,7 +156,7 @@ body {
 .card-body { padding: 9.6px 16px 0; }
 
 .student-name {
-  font-size: 25.35px;             /* SF Pro: referans genisligi 169.02 css */
+  font-size: 24.9px;             /* SF Pro: referans genisligi 169.02 css */
   font-weight: 700;
   letter-spacing: -0.3px;
   color: #1d1d1f;
@@ -157,7 +164,7 @@ body {
 }
 
 .student-birth {
-  font-size: 16.81px;             /* SF Pro: referans genisligi 95.93 css */
+  font-size: 24.9px;             /* SF Pro: referans genisligi 95.93 css */
   font-weight: 340;
   color: var(--ink);
   margin-top: 14.5px;
@@ -176,7 +183,7 @@ body {
   padding: 13.85px 17px 0 0;
 }
 .school-info {
-  font-size: 17px;
+  font-size: 24.9px;
   font-weight: 340;
   line-height: 20.5px;
   color: var(--ink);
@@ -202,9 +209,9 @@ body {
 .status-text { font-size: 15.27px; font-weight: 370; color: var(--ink); }
 
 .valid-date {
-  font-size: 29.43px;             /* SF Pro: referans genisligi 223.27 css */
+  font-size: 24.9px;             /* SF Pro: referans genisligi 223.27 css */
   font-weight: 700;
-  letter-spacing: -0.5px;
+  letter-spacing: -1.1px;
   color: #1d1d1f;
   line-height: 35.2px;              /* satir kutusu sabit → buton kaymaz */
   position: relative; top: 1.1px;   /* tarama: bu en iyi */
@@ -218,7 +225,7 @@ body {
   color: #fff;
   border: 0;
   border-radius: 26px;
-  font-size: 17px; font-weight: 600; font-family: inherit;
+  font-size: 24.9px; font-weight: 600; font-family: inherit;
   cursor: pointer;
   margin-top: 24.9px;
   box-shadow: 0 6px 18px rgba(105,134,202,.26);
@@ -233,7 +240,7 @@ body {
 .menu-title { font-size: 28px; font-weight: 700; margin-bottom: 18px; color: #16151a; }
 .menu-block { background: #fff; border-radius: 16px; padding: 16px; margin-bottom: 14px; }
 .menu-block-label {
-  font-size: 12px; font-weight: 700; letter-spacing: 1.2px;
+  font-size: 24.9px; font-weight: 700; letter-spacing: 1.2px;
   text-transform: uppercase; color: #9a9aa0; margin-bottom: 12px;
 }
 .set-row { margin-bottom: 14px; }
@@ -241,14 +248,14 @@ body {
 .set-input {
   width: 100%; padding: 11px 13px;
   border: 1px solid #e2e2e8; border-radius: 12px;
-  font-size: 15px; font-family: inherit; color: #16151a;
+  font-size: 24.9px; font-family: inherit; color: #16151a;
   background: #fafafc;
 }
 .reset-btn {
   width: 100%; padding: 13px;
   background: #f0f0f4; color: #333338;
   border: 0; border-radius: 12px;
-  font-size: 15px; font-weight: 600; font-family: inherit;
+  font-size: 24.9px; font-weight: 600; font-family: inherit;
   cursor: pointer; margin-top: 2px;
 }
 
@@ -266,7 +273,7 @@ body {
   width: 100%; padding: 11px 14px;
   border: 0; border-radius: 12px;
   background: #eef1f8; color: #2c3550;
-  font-size: 15px; font-weight: 600; font-family: inherit; cursor: pointer;
+  font-size: 24.9px; font-weight: 600; font-family: inherit; cursor: pointer;
 }
 .photo-btn.ghost { background: #f6f6f9; color: #8a8a95; }
 .photo-btn:active { transform: scale(.985); }
@@ -341,7 +348,7 @@ body {
   position: absolute; top: -7px; right: -11px;
   width: 21px; height: 21px; border-radius: 50%;
   background: var(--pink); color: #fff;
-  font-size: 12px; font-weight: 600;
+  font-size: 24.9px; font-weight: 600;
   display: grid; place-items: center; border: 2px solid #fff;
 }
 .badge[hidden] { display: none; }
