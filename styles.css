@@ -159,6 +159,7 @@ body {
 .student-name {
   font-size: 25.35px;             /* SF Pro: referans genisligi 169.02 css */
   font-weight: 700;
+  -webkit-text-stroke: 0.5px #1d1d1f;  /* referans dolgu %36.5 -> 700 yetersiz (%30.3) */
   letter-spacing: -0.3px;
   color: #1d1d1f;
   line-height: 32.2px;
@@ -187,7 +188,7 @@ body {
   font-size: 17px;
   font-weight: 400;
   line-height: 20.5px;
-  color: var(--ink);
+  color: #34363a;                 /* referans ortalama koyu 68.9 (--ink 50 cok koyu) */
   position: relative; top: 2.5px;
 }
 .syl-logo { width: 40px; height: 66.2px; flex-shrink: 0; display: block; position: relative; top: 1.62px; }
@@ -227,7 +228,7 @@ body {
   color: #fff;
   border: 0;
   border-radius: 26px;
-  font-size: 24.9px; font-weight: 600; font-family: inherit;
+  font-size: 12px; font-weight: 400; font-family: inherit;
   cursor: pointer;
   margin-top: 24.9px;
   box-shadow: 0 3px 9px rgba(105,134,202,.14);   /* referans golgesi cok hafif */
